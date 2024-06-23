@@ -1,0 +1,16 @@
+services:
+  reverse:
+    container_name: reverse
+    hostname: 192.168.1.112
+    image: nginx:latest
+    ports:
+      - 8050:80
+      - 443:443
+    restart: always
+    volumes:
+      - ./etc/nginx/conf.d/:/etc/nginx/conf.d/
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./var/www/certbot/:/var/www/certbot/
+      - ./etc/letsencrypt/:/etc/letsencrypt/
