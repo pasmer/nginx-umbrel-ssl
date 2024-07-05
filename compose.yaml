@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   reverse:
     container_name: reverse
@@ -9,12 +11,16 @@ services:
     restart: always
     volumes:
       - ./etc/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - umbrel_main_network
   certbot:
     image: certbot/certbot:latest
     volumes:
       - ./var/www/certbot/:/var/www/certbot/
       - ./etc/letsencrypt/:/etc/letsencrypt/
-  networks:
-  default:
-    external:
-      name: umbrel_main_network
+    networks:
+      - umbrel_main_network
+
+networks:
+  umbrel_main_network:
+    external: true
