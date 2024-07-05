@@ -14,3 +14,7 @@ services:
     volumes:
       - ./var/www/certbot/:/var/www/certbot/
       - ./etc/letsencrypt/:/etc/letsencrypt/
+  networks:
+  default:
+    external:
+      name: umbrel_main_network
